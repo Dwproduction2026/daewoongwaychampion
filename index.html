@@ -361,7 +361,7 @@ function calcTotal(scores) {
   for (var k=1; k<CRITERIA.length; k++) {
     CRITERIA[k].items.forEach(function(i){ way += (scores[i.id]||0); });
   }
-  return Math.floor(common + way*(7/15));
+  return Math.round(common + way*(7/15));
 }
 
 /* ==============================================
@@ -439,7 +439,7 @@ function getResult(caseId) {
   var totals = evals.map(function(e){ return calcTotal(e.scores); }).sort(function(a,b){ return a-b; });
   // 3명 이상이면 최고·최저 제외, 2명 이하이면 전원 평균
   var trimmed = totals.length >= 3 ? totals.slice(1,-1) : totals;
-  var avg = Math.round(trimmed.reduce(function(a,b){ return a+b; },0) / trimmed.length);
+  var avg = Math.floor(trimmed.reduce(function(a,b){ return a+b; },0) / trimmed.length);
   return {count:evals.length, avg:avg, result: avg>=70 ? 'adopt' : 'reject', trimmed: trimmed.length < totals.length};
 }
 function getCaseGroup(caseId) {
