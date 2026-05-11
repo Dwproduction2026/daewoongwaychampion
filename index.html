@@ -361,7 +361,7 @@ function calcTotal(scores) {
   for (var k=1; k<CRITERIA.length; k++) {
     CRITERIA[k].items.forEach(function(i){ way += (scores[i.id]||0); });
   }
-  return Math.round(common + way*(7/15));
+  return Math.floor(common + way*(7/15));
 }
 
 /* ==============================================
